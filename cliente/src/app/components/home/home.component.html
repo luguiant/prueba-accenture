@@ -1,0 +1,63 @@
+
+    
+  <nb-layout>
+      <nb-layout-column>
+          <nb-card>
+              <nb-card-body> 
+                 <div class="flex-centered col-xl-4 col-lg-6 col-md-8 col-sm-12" center>
+                    <h2 class="title">
+                      LOGIN
+                    </h2>
+                    <small class="form-text centered-text sub-title"> 
+                       ¡Hola! Inicia sesión con tu nombre de usuario o correo electrónico
+                    </small>
+                    <div *ngIf="this.showErrors">
+                        <nb-alert *ngIf="this.showErrors.length > 0" outline="danger" status="danger">
+                            <div > 
+                                <strong>Oh snap!</strong>
+                                <div *ngFor="let error of this.showErrors">{{ error.value }}</div>
+                            </div>
+                        </nb-alert>
+                    </div>
+                    <form (ngSubmit)="fnLogin(form)" #form="ngForm" autocomplete="nope">
+                        <div class="form-group">
+                                <input nbInput
+                                [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : ''"
+                                [(ngModel)]="login.email" #email="ngModel"
+                                type="email"
+                                name="email" id="input-email" pattern=".+@.+..+"
+                                placeholder="Email" autofocus fullWidth
+                                [required] = "true"
+                                [minlength]="10"
+                                [maxlength]="70"
+                                >
+                                <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.required"> El email es requerido</small>
+                                <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.pattern"> El email ingresado no es valido</small>
+                                <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.minlength"> El email es minomo de 10 caracteres</small>
+                                <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.maxlength"> El email es maximo de 70 caracteres</small>
+                        </div>
+                        <div class="form-group">
+                            <input  nbInput
+                                [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : ''"
+                                [(ngModel)]="login.password" #password="ngModel"
+                                type="password"
+                                name="password" id="input-password"
+                                placeholder="Password" autofocus fullWidth
+                                [required]="true"
+                                >
+                            <small class="form-text error" *ngIf="password.invalid && email.touched && password.errors?.required"> El password es requerido</small>    
+                        </div>  
+                        <button nbButton status="success" fullWidth  [disabled]="submitted || !form.valid" [class.btn-pulse]="submitted"> 
+                            Acceder 
+                        </button>      
+                    </form>
+                    <small class="form-text centered-text" id="register">        
+                        No tienes cuenta? <a routerLink="/register"><strong>Registrate ahora!</strong></a>       
+                     </small>
+                 </div>
+              </nb-card-body>
+          </nb-card>
+      </nb-layout-column>
+  </nb-layout>
+      
+  

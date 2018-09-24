@@ -1,0 +1,88 @@
+
+<nb-card >
+    <nb-card-body> 
+     <div class="flex-centered col-xl-5 col-lg-12 col-md-12 col-sm-12" center>
+        <h2 class="title">
+          Solicitud de credito
+        </h2>
+        <nb-alert *ngIf="save" status="success" class="centered-text">
+            Credito solicitado con exito!
+        </nb-alert>
+        <div *ngIf="this.showErrors">
+            <nb-alert *ngIf="this.showErrors.length > 0" outline="danger" status="danger">
+                <div > 
+                    <strong>Oh snap!</strong>
+                    <div *ngFor="let error of this.showErrors">{{ error.value }}</div>
+                </div>
+            </nb-alert>
+        </div>
+        
+        <form (ngSubmit)="fnSubmit(form)" #form="ngForm" autocomplete="nope">
+          <div class="form-row">
+                <div class="col-12 col-sm-6 col-md-6">
+                    <input nbInput
+                    [status]="name.dirty ? (name.invalid  ? 'danger' : 'success') : ''"
+                    [(ngModel)]="credit.name" #name="ngModel"
+                    type="text"
+                    name="name" id="input-name" 
+                    placeholder="Nombre de la compañia" autofocus fullWidth
+                    [required] = "true"
+                    [minlength]="3"
+                    [maxlength]="70"
+                    >
+                    <small class="form-text error" *ngIf="name.invalid && name.touched && name.errors?.required"> El campo es requerido</small>
+                    <small class="form-text error" *ngIf="name.invalid && name.touched && name.errors?.minlength"> El campo minimo de 3 caracteres</small>
+                    <small class="form-text error" *ngIf="name.invalid && name.touched && name.errors?.maxlength"> El campo es maximo de 70 caracteres</small>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6">
+                    <input nbInput
+                    [status]="nit.dirty ? (nit.invalid  ? 'danger' : 'success') : ''"
+                    [(ngModel)]="credit.nit" #nit="ngModel"
+                    type="number"
+                    name="nit" id="input-nit" 
+                    placeholder="Nit de la compañia" autofocus fullWidth
+                    [required] = "true"
+                    >
+                    <small class="form-text error" *ngIf="nit.invalid && nit.touched && nit.errors?.required"> El campo es requerido</small>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-12 col-sm-6 col-md-6">
+                        <h6>Fecha de ingreso <a (click)="openCalendar()" class="navigation">
+                            (
+                                <span *ngIf="this.showCalendar === true"> seleccionar</span>
+                                <span *ngIf="this.showCalendar === false"> cerrar</span>
+                            )</a>:
+                            <br> {{ this.credit.date | date }}
+                        </h6>
+                        <nb-calendar [hidden]="this.showCalendar" id="calendar" [(date)]="this.credit.date" [min]="min" [max]="max">
+                        </nb-calendar>
+                        <small class="form-text error" *ngIf="this.validationDate1"> La fecha debe ser menor a la actual.</small>
+                        <small class="form-text error" *ngIf="this.validationDate2"> Como minimo debe tener un año y medio de antiguedad.</small>
+                </div>     
+                <div class="col-12 col-sm-6 col-md-6">
+                    <input nbInput
+                    [status]="value.dirty ? (value.invalid  ? 'danger' : 'success') : ''"
+                    [(ngModel)]="credit.value" #value="ngModel"
+                    type="number"
+                    name="value" id="input-value" 
+                    placeholder="Ingrese su salario" autofocus fullWidth
+                    [required] = "true"
+                    min="800000"
+                    max="10000000"
+                    >
+                    <small class="form-text error" *ngIf="value.invalid && value.touched && value.errors?.required"> El campo es requerido</small>
+                    <small class="form-text error" *ngIf="this.validationSalary === true"> 
+                        El rango salaria permitido es;<br>
+                        $800000 - $10000000
+                    </small>
+                </div>
+            </div>
+            <button nbButton status="success" fullWidth  [disabled]="this.submitted3 === false || this.submitted2 === false || this.submitted === false || form.invalid"> 
+                Enviar
+            </button>  
+        </form>  
+      </div>
+    </nb-card-body>
+</nb-card>          
+

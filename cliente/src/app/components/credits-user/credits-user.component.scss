@@ -1,0 +1,105 @@
+//#nb-global-spinner{display: none !important;}
+.title{text-align: center;margin-bottom: 20px}
+btn-full-width[_nghost-c63] {
+  width: 100%;
+}
+
+.centered-text{
+  text-align: center;
+}
+
+.sub-title {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+#register{
+  margin-top: 1rem;
+}
+.form-row{
+  margin-bottom: 15px;
+}
+
+
+
+:host /deep/ {
+  nb-card-body{
+    position: relative;
+  }
+
+  nb-calendar-pageable-navigation{
+    position: relative !important;
+    width: 100%;
+    height: 75px;
+  }
+
+  nb-calendar-navigation{
+    position: relative !important;
+    width: 100%;
+    height: 75px;
+  }
+  
+  nb-calendar-day-picker{
+    position: absolute;
+    display: block;
+    margin-top: 75px;
+  }
+
+  nb-calendar-year-picker{
+    position: absolute;
+    display: block;
+    margin-top: 75px;
+  }
+
+  nb-calendar-month-picker{
+    position: absolute;
+    display: block;
+    margin-top: 75px;
+  }
+  
+    $auth-layout-padding: 2.5rem;
+  
+    nb-layout .layout .layout-container .content .columns nb-layout-column {
+      padding: $auth-layout-padding;
+    }
+  
+    nb-card {
+      height: calc(100vh - 2 * #{$auth-layout-padding});
+    }
+  
+    nb-card-header {
+      a {
+        text-decoration: none;
+        i {
+          font-size: 2rem;
+          font-weight: bold;
+        }
+      }
+    }
+  
+    nb-card {
+      margin: 0;
+    }
+    .flex-centered {
+        margin: auto;
+    }
+    nb-card-body {
+      display: flex;
+    }
+
+    
+    // TODO rewrite when develop responsive
+    @media (max-width: 550px) {
+      /deep/ nb-layout .layout .layout-container .content .columns nb-layout-column {
+        padding: 0;
+      }
+  
+      nb-card {
+        border-radius: 0;
+        height: 100vh;
+      }
+    }
+  
+  }
+  :host { text-align: center; }
+    span { font-size: 75%; opacity: 0.75; }

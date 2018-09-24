@@ -1,0 +1,243 @@
+<nb-layout>
+    <nb-layout-column>
+        <nb-card>
+            <nb-card-body> 
+               <div class="flex-centered col-xl-4 col-lg-6 col-md-8 col-sm-12" center>
+                  <h2 class="title">
+                    Registro
+                  </h2>
+                  <nb-alert *ngIf="save" status="success" class="centered-text">
+                      Usuario creado con exito!
+                  </nb-alert>
+                   <div *ngIf="this.showErrors">
+                        <nb-alert *ngIf="this.showErrors.length > 0" outline="danger" status="danger">
+                            <div > 
+                                <strong>Oh snap!</strong>
+                                <div *ngFor="let error of this.showErrors">{{ error.value }}</div>
+                            </div>
+                        </nb-alert>
+                    </div>
+                  <form (ngSubmit)="fnReister(form)" #form="ngForm" autocomplete="nope">
+                      <div class="form-row">
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <input nbInput
+                                [status]="name.dirty ? (name.invalid  ? 'danger' : 'success') : ''"
+                                [(ngModel)]="register.name" #name="ngModel"
+                                type="text"
+                                name="name" id="input-name" 
+                                placeholder="Nombres" autofocus fullWidth
+                                [required] = "true"
+                                [minlength]="3"
+                                [maxlength]="70"
+                                >
+                                <small class="form-text error" *ngIf="name.invalid && name.touched && name.errors?.required"> El campo es requerido</small>
+                                <small class="form-text error" *ngIf="name.invalid && name.touched && name.errors?.minlength"> El campo minimo de 3 caracteres</small>
+                                <small class="form-text error" *ngIf="name.invalid && name.touched && name.errors?.maxlength"> El campo es maximo de 70 caracteres</small>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <input nbInput
+                                [status]="lastname.dirty ? (lastname.invalid  ? 'danger' : 'success') : ''"
+                                [(ngModel)]="register.lastname" #lastname="ngModel"
+                                type="text"
+                                name="lastname" id="input-lastname" 
+                                placeholder="Apellidos" autofocus fullWidth
+                                [required] = "true"
+                                [minlength]="3"
+                                [maxlength]="70"
+                                >
+                                <small class="form-text error" *ngIf="lastname.invalid && lastname.touched && lastname.errors?.required"> El campo es requerido</small>
+                                <small class="form-text error" *ngIf="lastname.invalid && lastname.touched && lastname.errors?.minlength"> El campo minimo de 3 caracteres</small>
+                                <small class="form-text error" *ngIf="lastname.invalid && lastname.touched && lastname.errors?.maxlength"> El campo es maximo de 70 caracteres</small>
+                            </div>
+                             
+                      </div>
+                      <div class="form-row">
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <input nbInput
+                                [status]="country.dirty ? (country.invalid  ? 'danger' : 'success') : ''"
+                                [(ngModel)]="register.country" #country="ngModel"
+                                type="text"
+                                name="country" id="input-country" 
+                                placeholder="País" autofocus fullWidth
+                                [required] = "true"
+                                [minlength]="3"
+                                [maxlength]="70"
+                                >
+                                <small class="form-text error" *ngIf="country.invalid && country.touched && country.errors?.required"> El campo es requerido</small>
+                                <small class="form-text error" *ngIf="country.invalid && country.touched && country.errors?.minlength"> El campo minimo de 3 caracteres</small>
+                                <small class="form-text error" *ngIf="country.invalid && country.touched && country.errors?.maxlength"> El campo es maximo de 70 caracteres</small>
+                            </div>  
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <input nbInput
+                                [status]="state_country.dirty ? (state_country.invalid  ? 'danger' : 'success') : ''"
+                                [(ngModel)]="register.state_country" #state_country="ngModel"
+                                type="text"
+                                name="state_country" id="input-state_country" 
+                                placeholder="Estado O Provincia" autofocus fullWidth
+                                [required] = "true"
+                                [minlength]="3"
+                                [maxlength]="70"
+                                >
+                                <small class="form-text error" *ngIf="state_country.invalid && state_country.touched && state_country.errors?.required"> El campo es requerido</small>
+                                <small class="form-text error" *ngIf="state_country.invalid && state_country.touched && state_country.errors?.minlength"> El campo minimo de 3 caracteres</small>
+                                <small class="form-text error" *ngIf="state_country.invalid && state_country.touched && state_country.errors?.maxlength"> El campo es maximo de 70 caracteres</small>
+                            </div>  
+                      </div>
+                      <div class="form-row">
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <input nbInput
+                                [status]="city.dirty ? (city.invalid  ? 'danger' : 'success') : ''"
+                                [(ngModel)]="register.city" #city="ngModel"
+                                type="text"
+                                name="Ciudad" id="input-city" 
+                                placeholder="Ciudad" autofocus fullWidth
+                                [required] = "true"
+                                >
+                                <small class="form-text error" *ngIf="city.invalid && city.touched && city.errors?.required"> El campo es requerido</small>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <input nbInput
+                                [status]="address.dirty ? (address.invalid  ? 'danger' : 'success') : ''"
+                                [(ngModel)]="register.address" #address="ngModel"
+                                type="text"
+                                name="address" id="input-address" 
+                                placeholder="Dirección" autofocus fullWidth
+                                [required] = "true"
+                                [minlength]="3"
+                                [maxlength]="70"
+                                >
+                                <small class="form-text error" *ngIf="address.invalid && address.touched && address.errors?.required"> El campo es requerido</small>
+                                <small class="form-text error" *ngIf="address.invalid && address.touched && address.errors?.minlength"> El campo minimo de 3 caracteres</small>
+                                <small class="form-text error" *ngIf="address.invalid && address.touched && address.errors?.maxlength"> El campo es maximo de 70 caracteres</small>
+                            </div>  
+                      </div>
+                      <div class="form-row">
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <input nbInput
+                                [status]="age.dirty ? (age.invalid  ? 'danger' : 'success') : ''"
+                                [(ngModel)]="register.age" #age="ngModel"
+                                type="number"
+                                name="age" id="input-age" 
+                                placeholder="Edad" autofocus fullWidth
+                                [required] = "true"
+                                min=18
+                                max=120
+                                >
+                                <small class="form-text error" *ngIf="age.invalid && age.touched && age.errors?.required || age == null"> El campo es requerido</small>
+                                
+                                <small class="form-text error" *ngIf="ageValid"> El valor es de 18 a 120 años</small>
+                               
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <input nbInput
+                                [status]="phone.dirty ? (phone.invalid  ? 'danger' : 'success') : ''"
+                                [(ngModel)]="register.phone" #phone="ngModel"
+                                type="number"
+                                name="phone" id="input-phone" 
+                                placeholder="Telefono" autofocus fullWidth
+                                [required] = "true"
+                                >
+                                <small class="form-text error" *ngIf="phone.invalid && phone.touched && phone.errors?.required"> El campo es requerido</small>
+                            </div>    
+                      </div>
+                      <div class="form-group">
+                           
+                            <input nbInput
+                            [status]="identification.dirty ? (identification.invalid  ? 'danger' : 'success') : ''"
+                            [(ngModel)]="register.identification" #identification="ngModel"
+                            type="number"
+                            name="identification" id="input-identification" 
+                            placeholder="Identificación" autofocus fullWidth
+                            [required] = "true"
+                            >
+                            <small class="form-text error" *ngIf="identification.invalid && identification.touched && identification.errors?.required"> El campo es requerido</small>
+                              
+                         
+                      </div>
+                      <div class="form-group">
+                             
+                      </div>
+                      <div class="form-group">
+                              <input nbInput
+                              [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : ''"
+                              [(ngModel)]="register.email" #email="ngModel"
+                              type="email"
+                              name="email" id="input-email" pattern=".+@.+..+"
+                              placeholder="Email" autofocus fullWidth
+                              [required] = "true"
+                              [minlength]="10"
+                              [maxlength]="70"
+                              >
+                              <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.required"> El email es requerido</small>
+                              <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.pattern"> El email ingresado no es valido</small>
+                              <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.minlength"> El email es minomo de 10 caracteres</small>
+                              <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.maxlength"> El email es maximo de 70 caracteres</small>
+                      </div>
+                      <div class="form-group">
+                              <input nbInput
+                              [status]="email_confirmation.dirty ? (email_confirmation.invalid  ? 'danger' : 'success') : ''"
+                              [(ngModel)]="register.email_confirmation" #email_confirmation="ngModel"
+                              type="email"
+                              name="email_confirmation" id="input-email_confirmation" pattern=".+@.+..+"
+                              placeholder="Confirmar email" autofocus fullWidth
+                              [required] = "true"
+                              >
+                              <small class="form-text error" *ngIf="email_confirmation.invalid && email_confirmation.touched && email_confirmation.errors?.required"> 
+                                    La confirmación de email es requerido
+                              </small>
+                              <small class="form-text error" 
+                                    *ngIf="register.email_confirmation != register.email">
+                                El email y la confirmación del email no coinciden
+                               </small>
+                      </div>
+                      <div class="form-group">
+                          <input  nbInput
+                              [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : ''"
+                              [(ngModel)]="register.password" #password="ngModel"
+                              type="password"
+                              name="password" id="input-password"
+                              pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$"
+                              placeholder="Password" autofocus fullWidth
+                              [required]="true"
+                              >
+                          <small class="form-text error" *ngIf="password.invalid && password.touched && password.errors?.required"> El password es requerido</small>
+                          <small class="form-text error" *ngIf="password.invalid && password.touched && password.errors?.pattern"> 
+                                - la contraseña debe contener 1 número (0-9)<br>
+                                - la contraseña debe contener 1 letra mayúscula<br>
+                                - la contraseña debe contener 1 letra minúscula<br>
+                                - la contraseña debe contener 1 caracter no alfanumérico<br>
+                                - la contraseña tiene entre 8 y 16 caracteres sin espacio<br>
+                          </small>    
+                      </div>
+                      <div class="form-group">
+                          <input  nbInput
+                              [status]="password_confirmation.dirty ? (password_confirmation.invalid  ? 'danger' : 'success') : ''"
+                              [(ngModel)]="register.password_confirmation" #password_confirmation="ngModel"
+                              type="password"
+                              name="password_confirmation" id="input-password_confirmation"
+                              placeholder="Confirmar password" autofocus fullWidth
+                              [required]="true"
+                              >
+                          <small class="form-text error" *ngIf="password_confirmation.invalid && password_confirmation.touched && password_confirmation.errors?.required"> 
+                              La cofirmacion de password es requerido
+                            </small> 
+                           <small class="form-text error" 
+                                    *ngIf="register.password_confirmation != register.password">
+                                El password y la confirmación del password no coinciden
+                           </small>
+                               
+                      </div>   
+                      <button nbButton status="success" fullWidth  [disabled]="submitted === false || !form.valid"> 
+                          Registrar
+                      </button>      
+                  </form>
+                  <small class="form-text centered-text" id="register">        
+                      Ya tienes cuenta? <a routerLink="../"><strong>Login!</strong></a>       
+                   </small>
+               </div>
+            </nb-card-body>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>
+    
+
